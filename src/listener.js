@@ -15,7 +15,7 @@ class Listener {
       const getPlaylistWithSongs = await this._playlistSongsService.getPlaylistSongs(playlistId);
       const mappedPlaylistWithSongs = mapDBPlaylistWithSongs(getPlaylistWithSongs);
 
-      const result = await this._mailSender.sendEmail(targetEmail, JSON.stringify(mappedPlaylistWithSongs));
+      const result = await this._mailSender.sendEmail(targetEmail, JSON.stringify(mappedPlaylistWithSongs, null, 2));
       console.log(result);
     } catch (error) {
       console.error(error);
