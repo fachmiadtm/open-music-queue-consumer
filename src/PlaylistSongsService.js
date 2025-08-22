@@ -1,10 +1,10 @@
 const { Pool } = require('pg');
- 
+
 class PlaylistSongsService {
   constructor() {
     this._pool = new Pool();
   }
- 
+
   async getPlaylistSongs(playlistId) {
     const query = {
       text: `SELECT playlists.id AS playlist_id, playlists.name,
@@ -20,5 +20,5 @@ class PlaylistSongsService {
     return result.rows;
   }
 }
- 
+
 module.exports = PlaylistSongsService;

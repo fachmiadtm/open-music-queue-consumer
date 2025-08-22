@@ -1,17 +1,17 @@
-const { mapDBPlaylistWithSongs } = require("./utils");
+const { mapDBPlaylistWithSongs } = require('./utils');
 
 class Listener {
   constructor(playlistSongsService, mailSender) {
     this._playlistSongsService = playlistSongsService;
     this._mailSender = mailSender;
- 
+
     this.listen = this.listen.bind(this);
   }
- 
+
   async listen(message) {
     try {
       const { playlistId, targetEmail } = JSON.parse(message.content.toString());
-      
+
       const getPlaylistWithSongs = await this._playlistSongsService.getPlaylistSongs(playlistId);
       const mappedPlaylistWithSongs = mapDBPlaylistWithSongs(getPlaylistWithSongs);
 
@@ -22,5 +22,5 @@ class Listener {
     }
   }
 }
- 
+
 module.exports = Listener;
